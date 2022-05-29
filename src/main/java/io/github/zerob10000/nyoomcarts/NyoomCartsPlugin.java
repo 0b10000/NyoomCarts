@@ -3,7 +3,6 @@ package io.github.zerob10000.nyoomcarts;
 import dev.dejvokep.boostedyaml.YamlDocument;
 import io.github.zerob10000.nyoomcarts.listeners.SignListener;
 import io.github.zerob10000.nyoomcarts.listeners.VehicleListener;
-import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
