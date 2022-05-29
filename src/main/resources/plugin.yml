@@ -1,0 +1,5 @@
+name: NyoomCarts
+version: '${version}'
+main: io.github.zerob10000.nyoomcarts.NyoomCartsPlugin
+api-version: 1.18
+authors: [ 0b10000 ]
