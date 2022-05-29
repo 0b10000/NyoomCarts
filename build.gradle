@@ -21,6 +21,7 @@ repositories {
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.18.2-R0.1-SNAPSHOT'
     implementation 'dev.dejvokep:boosted-yaml-spigot:1.1'
+    compileOnly 'org.bstats:bstats-bukkit:3.0.0'
 }
 
 shadowJar {
@@ -28,6 +29,7 @@ shadowJar {
         attributes 'Main-Class': 'io.github.zerob10000.nyoomcarts.NyoomCartsPlugin'
     }
     relocate 'dev.dejvokep:boosted-yaml-spigot:1.1', 'io.github.zerob10000.nyoomcarts.boosted-yaml'
+    relocate 'org.bstats:bstats-bukkit:3.0.0', 'io.github.zerob10000.nyoomcarts.bstats'
 }
 
 def targetJavaVersion = 17
