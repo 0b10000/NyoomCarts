@@ -15,12 +15,14 @@ public class SignListener implements Listener {
         Player player = event.getPlayer();
         String[] lines = event.getLines();
 
+        // Checks for permissions
         if(lines[0].contains("[nyoom]") && !player.hasPermission("nyoomcarts.sign")){
             player.sendMessage(MessageUtils.getMessagePrefix() + ChatColor.RED + "No permission!");
             event.setCancelled(true);
             return;
         }
 
+        // Check for invalid speed
         if(lines[0].contains("[nyoom]") && !SignUtils.isValidDouble(lines[1])) {
             player.sendMessage(MessageUtils.getMessagePrefix() + ChatColor.RED + "Invalid speed!");
             event.setCancelled(true);

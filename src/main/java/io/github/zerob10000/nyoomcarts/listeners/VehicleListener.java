@@ -13,12 +13,9 @@ import org.bukkit.event.vehicle.VehicleMoveEvent;
 
 public class VehicleListener implements Listener {
 
-    private final NyoomCartsPlugin plugin;
-    private double maxSpeed;
-    private double minSpeed;
+    private final double maxSpeed;
 
     public VehicleListener(NyoomCartsPlugin plugin) {
-        this.plugin = plugin;
         this.maxSpeed = plugin.config.getDouble(Route.from("speed", "max-speed-multiplier")) * 0.4d;
     }
 
@@ -30,6 +27,7 @@ public class VehicleListener implements Listener {
         Double speed = SignUtils.getSignSpeed(block);
 
         if (speed == null) return;
+        // Clamp speed to maxSpeed
         if (speed > maxSpeed) speed = maxSpeed;
 
         minecart.setMaxSpeed(speed);
