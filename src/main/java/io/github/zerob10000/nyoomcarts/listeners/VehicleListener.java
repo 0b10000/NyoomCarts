@@ -23,18 +23,14 @@ public class VehicleListener implements Listener {
     public void OnVehicleMove(VehicleMoveEvent event) {
         Block block = SignUtils.locateNearbySign(event.getTo());
         if (block == null) return;
-        if (!(event.getVehicle() instanceof Minecart minecart)) return;
+        if (!(event.getVehicle() instanceof Minecart)) return;
         Double speed = SignUtils.getSignSpeed(block);
 
         if (speed == null) return;
         // Clamp speed to maxSpeed
         if (speed > maxSpeed) speed = maxSpeed;
 
-        minecart.setMaxSpeed(speed);
-    }
-
-    private static double clamp(double val, double min, double max) {
-        return Math.max(min, Math.min(max, val));
+        ((Minecart) event.getVehicle()).setMaxSpeed(speed);
     }
 
 }
