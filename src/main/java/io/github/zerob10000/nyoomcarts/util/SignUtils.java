@@ -1,6 +1,6 @@
 package io.github.zerob10000.nyoomcarts.util;
 
-import org.bukkit.Bukkit;
+import io.github.zerob10000.nyoomcarts.enums.SignType;
 import org.bukkit.Location;
 import org.bukkit.Tag;
 import org.bukkit.block.Block;
@@ -8,14 +8,29 @@ import org.bukkit.block.Sign;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class SignUtils {
+    public static List<String> validDirections = Arrays.asList("north", "south", "east", "west");
     static int[][] relativeLocationsToCheck = {{0, 0, 1}, {0, 0, -1}, {1, 0, 0}, {-1, 0, 0}, {0, -1, 1}, {0, -1, -1}, {1, -1, 0}, {-1, -1, 0}};
 
-    public static boolean isValidSignText(@NotNull String[] lines) {
-        return lines[0].contains("[nyoom]") && !lines[1].isBlank() && isValidDouble(lines[1]);
+    public static SignType classifySign(@NotNull String[] lines) {
+        if (!lines[0].contains("[nyoom]")) return SignType.NONE;
+        if (lines[1].isBlank()) return SignType.NONE;
+
+        if (isValidDouble(lines[1])) return SignType.SPEED;
+
+        if (lines[1].contains("launch") && validDirections.contains(lines[2])) return SignType.LAUNCH;
+
+        return SignType.NONE;
     }
 
-    public static boolean isValidSign(Sign sign) {
+    public static boolean isValidSignText(@NotNull String[] lines) {
+        return classifySign(lines) != SignType.NONE;
+    }
+
+    public static boolean isValidSign(@NotNull Sign sign) {
         return isValidSignText(sign.getLines());
     }
 

@@ -1,6 +1,7 @@
 package io.github.zerob10000.nyoomcarts;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
+import io.github.zerob10000.nyoomcarts.listeners.BlockRedstoneListener;
 import io.github.zerob10000.nyoomcarts.listeners.SignListener;
 import io.github.zerob10000.nyoomcarts.listeners.VehicleListener;
 import org.bukkit.Bukkit;
@@ -14,6 +15,7 @@ import java.io.IOException;
 public final class NyoomCartsPlugin extends JavaPlugin {
 
     public YamlDocument config;
+
     @Override
     public void onEnable() {
         // Initialize bStats
@@ -30,6 +32,8 @@ public final class NyoomCartsPlugin extends JavaPlugin {
         // Register events
         Bukkit.getPluginManager().registerEvents(new VehicleListener(this), this);
         Bukkit.getPluginManager().registerEvents(new SignListener(), this);
+        Bukkit.getPluginManager().registerEvents(new BlockRedstoneListener(), this);
+
 
         // And we're off to the races!
         Bukkit.getLogger().info(ChatColor.GREEN + "Enabled " + this.getName());
