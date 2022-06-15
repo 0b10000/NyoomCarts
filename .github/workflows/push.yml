@@ -1,11 +1,4 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-# This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
-
-name: Java CI with Gradle
+name: Java main CI with Gradle
 
 on:
   push:
@@ -39,3 +32,12 @@ jobs:
       with:
         name: "Plugin JAR"
         path: ${{ github.workspace }}/build/libs/NyoomCarts-*.jar
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: true
+        title: "Latest development (may be unstable)"
+        files: |
+          ${{ github.workspace }}/LICENSE
+          ${{ github.workspace }}/build/libs/NyoomCarts-*.jar
