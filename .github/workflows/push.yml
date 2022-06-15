@@ -30,12 +30,13 @@ jobs:
         name: "Plugin JAR"
         path: ${{ github.workspace }}/build/libs/NyoomCarts-*.jar
     - uses: "marvinpinto/action-automatic-releases@latest"
+      if: github.event_name != 'pull_request'
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: "latest"
         prerelease: true
-        title: "Latest development (may be unstable)"
+        title: "Latest development build (may be unstable)"
         files: |
           ${{ github.workspace }}/LICENSE
           ${{ github.workspace }}/build/libs/NyoomCarts-*.jar
-        if: github.event_name != 'pull_request'
+        
