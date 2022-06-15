@@ -40,3 +40,8 @@ speed:
 # Do not edit!
 file-version: 1
 ```
+
+## Acknowledgments
+NyoomCarts uses BoostedYAML and bStats. See the [NOTICE](https://github.com/0b10000/NyoomCarts/blob/main/NOTICE) for more details.
+
+![Plugin stats](https://bstats.org/signatures/bukkit/NyoomCarts.svg)
