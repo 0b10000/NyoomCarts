@@ -2,7 +2,6 @@ package io.github.zerob10000.nyoomcarts.listeners;
 
 import io.github.zerob10000.nyoomcarts.enums.SignType;
 import io.github.zerob10000.nyoomcarts.util.SignUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.Tag;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -24,8 +23,6 @@ public class BlockRedstoneListener implements Listener {
     public void onBlockRedstoneChange(BlockRedstoneEvent event) {
         boolean highOld = event.getOldCurrent() > 0;
         boolean highNew = event.getNewCurrent() > 0;
-
-        Bukkit.getLogger().info(highOld + "" + highNew);
 
         // Only fire if there was a signal change to high
         if (highOld || !highNew) return;
