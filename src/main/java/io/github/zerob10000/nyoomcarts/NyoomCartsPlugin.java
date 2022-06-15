@@ -1,6 +1,8 @@
 package io.github.zerob10000.nyoomcarts;
 
 import dev.dejvokep.boostedyaml.YamlDocument;
+import dev.dejvokep.boostedyaml.dvs.versioning.BasicVersioning;
+import dev.dejvokep.boostedyaml.settings.updater.UpdaterSettings;
 import io.github.zerob10000.nyoomcarts.listeners.BlockRedstoneListener;
 import io.github.zerob10000.nyoomcarts.listeners.SignListener;
 import io.github.zerob10000.nyoomcarts.listeners.VehicleListener;
@@ -15,6 +17,7 @@ import java.io.IOException;
 public final class NyoomCartsPlugin extends JavaPlugin {
 
     public YamlDocument config;
+    private UpdaterSettings updaterSettings;
 
     @Override
     public void onEnable() {
@@ -25,6 +28,10 @@ public final class NyoomCartsPlugin extends JavaPlugin {
         try {
             //noinspection ConstantConditions
             config = YamlDocument.create(new File(getDataFolder(), "config.yml"), getResource("config.yml"));
+
+            UpdaterSettings.builder().setVersioning(new BasicVersioning("file-version"));
+
+            config.setUpdaterSettings(updaterSettings);
         } catch (IOException e) {
             Bukkit.getLogger().severe(ChatColor.RED + "Error while reading config: \n" + e);
         }
