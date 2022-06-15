@@ -43,5 +43,7 @@ file-version: 1
 
 ## Acknowledgments
 NyoomCarts uses BoostedYAML and bStats. See the [NOTICE](https://github.com/0b10000/NyoomCarts/blob/main/NOTICE) for more details.
+NyoomCarts is licensed under the [GNU GPL v3](https://github.com/0b10000/NyoomCarts/blob/main/LICENSE).
+Inspired by [MinecartSpeedPlus](https://www.spigotmc.org/resources/minecart-speed-plus.69639/)
 
 ![Plugin stats](https://bstats.org/signatures/bukkit/NyoomCarts.svg)
