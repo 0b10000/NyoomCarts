@@ -16,8 +16,11 @@ public class SignListener implements Listener {
         Player player = event.getPlayer();
         String[] lines = event.getLines();
 
+        //Exclude any non-NyoomCarts signs
+        if (!lines[0].contains("[nyoom]")) return;
+
         // Checks for permissions
-        if (lines[0].contains("[nyoom]") && !player.hasPermission("nyoomcarts.sign")) {
+        if (!player.hasPermission("nyoomcarts.sign")) {
             player.sendMessage(MessageUtils.getMessagePrefix() + ChatColor.RED + "No permission!");
             event.setCancelled(true);
             return;
