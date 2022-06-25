@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.19-R0.1-SNAPSHOT'
-    compileOnly 'dev.dejvokep:boosted-yaml-spigot:1.1'
+    compileOnly 'dev.dejvokep:boosted-yaml-spigot:1.2'
 }
 
 def targetJavaVersion = 17
