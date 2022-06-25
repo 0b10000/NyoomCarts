@@ -4,4 +4,8 @@ main: io.github.zerob10000.nyoomcarts.NyoomCartsPlugin
 api-version: 1.19
 authors: [ '0b10000' ]
 libraries:
-  - dev.dejvokep:boosted-yaml-spigot:1.1
+  - dev.dejvokep:boosted-yaml-spigot:1.2
+permissions:
+  nyoomcarts.sign:
+    description: "Allows players to place NyoomCarts signs"
+    default: false
