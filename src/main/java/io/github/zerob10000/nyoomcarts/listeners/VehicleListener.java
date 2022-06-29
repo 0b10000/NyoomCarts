@@ -3,8 +3,8 @@ package io.github.zerob10000.nyoomcarts.listeners;
 import dev.dejvokep.boostedyaml.route.Route;
 import io.github.zerob10000.nyoomcarts.NyoomCartsPlugin;
 import io.github.zerob10000.nyoomcarts.util.SignUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Minecart;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,13 +24,23 @@ public class VehicleListener implements Listener {
         Block block = SignUtils.locateNearbySign(event.getTo());
         if (block == null) return;
         if (!(event.getVehicle() instanceof Minecart)) return;
-        Double speed = SignUtils.getSignSpeed(block);
+        switch (SignUtils.classifySign(block)) {
+            case SPEED -> {
+                Double speed = SignUtils.getSignSpeed(block);
 
-        if (speed == null) return;
-        // Clamp speed to maxSpeed
-        if (speed > maxSpeed) speed = maxSpeed;
+                if (speed == null) return;
+                // Clamp speed to maxSpeed
+                if (speed > maxSpeed) speed = maxSpeed;
 
-        ((Minecart) event.getVehicle()).setMaxSpeed(speed);
+                ((Minecart) event.getVehicle()).setMaxSpeed(speed);
+            }
+            case ECD -> {
+                if (!event.getVehicle().isEmpty() || event.getVehicle().getType() != EntityType.MINECART) return;
+                event.getVehicle().remove();
+            }
+        }
+
+
     }
 
 }

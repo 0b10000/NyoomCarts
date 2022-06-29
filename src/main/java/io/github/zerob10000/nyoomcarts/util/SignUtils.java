@@ -19,11 +19,18 @@ public class SignUtils {
         if (!lines[0].contains("[nyoom]")) return SignType.NONE;
         if (lines[1].isBlank()) return SignType.NONE;
 
+        if (lines[1].contains("ecd")) return SignType.ECD;
+
         if (isValidDouble(lines[1])) return SignType.SPEED;
 
         if (lines[1].contains("launch") && validDirections.contains(lines[2])) return SignType.LAUNCH;
 
         return SignType.NONE;
+    }
+
+    public static SignType classifySign(@NotNull Block block) {
+        Sign sign = (Sign) block.getState();
+        return classifySign(sign.getLines());
     }
 
     public static boolean isValidSignText(@NotNull String[] lines) {
