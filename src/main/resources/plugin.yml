@@ -8,4 +8,4 @@ libraries:
 permissions:
   nyoomcarts.sign:
     description: "Allows players to place NyoomCarts signs"
-    default: false
+    default: op
