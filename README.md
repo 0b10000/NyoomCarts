@@ -32,6 +32,12 @@ launch
 ```
 Launcher signs need to be powered towards the sign face,  like so:
 [![](https://i.imgur.com/lo5Rrwu.png)](https://i.imgur.com/lo5Rrwu.png)
+### Empty Cart Detector (ECD) signs
+ECD signs destroy empty carts that pass over or nearby them. ECD signs must be formatted like the following:
+```
+[nyoom]
+ecd
+```
 
 If the sign is placed correctly, the first line will turn bold and green to signify that the sign is valid.
 
