@@ -1,5 +1,7 @@
 # NyoomCarts
+<!-- modrinth_exclude.start -->
 ![GitHub all releases](https://img.shields.io/github/downloads/0b10000/NyoomCarts/total)
+<!-- modrinth_exclude.end -->
 
 NyoomCarts is a Spigot plugin that brings speed modification and more to minecarts.
 
