@@ -1,9 +1,9 @@
-package io.github.zerob10000.nyoomcarts.enums;
+package dev.onesix.nyoomcarts.enums;
 
 public enum SignType {
     SPEED,
     LAUNCH,
-
     ECD,
+    SONG,
     NONE
 }

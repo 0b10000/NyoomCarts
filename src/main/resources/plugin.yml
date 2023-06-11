@@ -1,10 +1,12 @@
 name: NyoomCarts
 version: '${version}'
-main: io.github.zerob10000.nyoomcarts.NyoomCartsPlugin
-api-version: 1.19
+main: dev.onesix.nyoomcarts.NyoomCartsPlugin
+api-version: '1.20'
 authors: [ '0b10000' ]
 libraries:
   - dev.dejvokep:boosted-yaml-spigot:1.3
+softdepend:
+  - NoteBlockAPI
 permissions:
   nyoomcarts.sign:
     description: "Allows players to place NyoomCarts signs"

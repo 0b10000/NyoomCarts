@@ -46,7 +46,7 @@ Configuration is very simple for the time being.
 `max-speed-multiplier` sets the maximum speed. If the speed is greater on the sign, the cart will be clamped to the speed specified in the config file.
 ```yml
 speed:
-  max-speed-multiplier: 3
+max-speed-multiplier: 3
 # Do not edit!
 file-version: 1
 ```
