@@ -5,7 +5,6 @@ import dev.onesix.nyoomcarts.util.MessageUtils;
 import dev.onesix.nyoomcarts.util.SignUtils;
 import dev.onesix.nyoomcarts.util.SongUtils;
 import org.bukkit.ChatColor;
-import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
