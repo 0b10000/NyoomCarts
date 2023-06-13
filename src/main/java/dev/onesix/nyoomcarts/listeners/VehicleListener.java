@@ -4,9 +4,13 @@ import com.xxmicloxx.NoteBlockAPI.model.SoundCategory;
 import com.xxmicloxx.NoteBlockAPI.songplayer.EntitySongPlayer;
 import dev.dejvokep.boostedyaml.route.Route;
 import dev.onesix.nyoomcarts.NyoomCartsPlugin;
+import dev.onesix.nyoomcarts.tasks.StationTask;
 import dev.onesix.nyoomcarts.util.SignUtils;
 import java.util.List;
+import java.util.Locale;
+import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Minecart;
@@ -14,13 +18,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.vehicle.VehicleMoveEvent;
+import org.bukkit.util.Vector;
 
 public class VehicleListener implements Listener {
 
     private final double maxSpeed;
+    private final NyoomCartsPlugin plugin;
+    private final Double maxRange;
 
     public VehicleListener(NyoomCartsPlugin plugin) {
         this.maxSpeed = plugin.config.getDouble(Route.from("speed", "max-speed-multiplier")) * 0.4d;
+        this.maxRange = plugin.config.getDouble(Route.from("songs", "max-range"));
+        this.plugin = plugin;
     }
 
     @EventHandler
@@ -54,6 +63,10 @@ public class VehicleListener implements Listener {
                 esp.setAutoDestroy(true);
 
                 double radius = Double.parseDouble(SignUtils.getSign(block).getLine(3));
+
+                // Clamp speed to maxSpeed
+                if (radius > maxRange) radius = maxRange;
+
                 List<Entity> nearbyEntities =
                         event.getVehicle().getNearbyEntities(radius + 4, radius + 4, radius + 4);
                 for (Entity entity : nearbyEntities) {
@@ -63,6 +76,32 @@ public class VehicleListener implements Listener {
 
                 esp.setDistance((int) radius);
                 esp.setPlaying(true);
+            }
+            case STATION -> {
+                if (event.getVehicle().getScoreboardTags().contains("nyoom-station")) return;
+                event.getVehicle().addScoreboardTag("nyoom-station");
+
+                double oldSpeed = ((Minecart) event.getVehicle()).getMaxSpeed();
+                event.getVehicle().setVelocity(new Vector(0, 0, 0));
+                ((Minecart) event.getVehicle()).setMaxSpeed(0);
+                long delay = (long) Double.parseDouble(SignUtils.getSign(block).getLine(3)) * 20;
+
+                String direction = SignUtils.getSign(block).getLine(2);
+                if (!SignUtils.validDirections.contains(direction.toLowerCase(Locale.ROOT))) return;
+                BlockFace directionFace = BlockFace.valueOf(direction.toUpperCase(Locale.ROOT));
+
+                Bukkit.getScheduler()
+                        .runTaskLater(
+                                plugin,
+                                new StationTask(event.getVehicle(), oldSpeed, directionFace),
+                                delay);
+                Bukkit.getScheduler()
+                        .runTaskLater(
+                                plugin,
+                                () -> {
+                                    event.getVehicle().removeScoreboardTag("nyoom-station");
+                                },
+                                delay + 20);
             }
         }
     }

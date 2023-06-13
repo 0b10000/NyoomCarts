@@ -5,5 +5,6 @@ public enum SignType {
     LAUNCH,
     ECD,
     SONG,
+    STATION,
     NONE
 }

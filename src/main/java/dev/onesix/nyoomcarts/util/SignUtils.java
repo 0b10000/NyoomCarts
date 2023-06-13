@@ -36,7 +36,11 @@ public class SignUtils {
         if (lines[1].contains("launch") && validDirections.contains(lines[2]))
             return SignType.LAUNCH;
 
-        if (lines[1].contains("sound")
+        if (lines[1].contains("station")
+                && validDirections.contains(lines[2])
+                && isValidDouble(lines[3])) return SignType.STATION;
+
+        if ((lines[1].contains("sound") || lines[1].contains("song"))
                 && NyoomCartsPlugin.instance.noteBlockAPILoaded
                 && SongUtils.songExists(lines[2])
                 && isValidDouble(lines[3])) return SignType.SONG;
