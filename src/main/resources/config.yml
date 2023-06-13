@@ -1,4 +1,6 @@
 speed:
   max-speed-multiplier: 3
+songs:
+  max-range: 16
 # Do not edit!
-file-version: 1
+file-version: 2
